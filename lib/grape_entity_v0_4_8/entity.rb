@@ -1,7 +1,7 @@
 require 'multi_json'
 require 'set'
 
-module Grape
+module GrapeV0_14_0
   # An Entity is a lightweight structure that allows you to easily
   # represent data from your application in a consistent and abstracted
   # way in your API. Entities can also provide documentation for the
@@ -11,7 +11,7 @@ module Grape
   #
   #   module API
   #     module Entities
-  #       class User < Grape::Entity
+  #       class User < GrapeV0_14_0::Entity
   #         expose :first_name, :last_name, :screen_name, :location
   #         expose :field, documentation: { type: "string", desc: "describe the field" }
   #         expose :latest_status, using: API::Status, as: :status, unless: { collection: true }
@@ -30,7 +30,7 @@ module Grape
   # @example Usage in the API Layer
   #
   #   module API
-  #     class Users < Grape::API
+  #     class Users < GrapeV0_14_0::API
   #       version 'v2'
   #
   #       desc 'User index', { params: API::Entities::User.documentation }
@@ -50,7 +50,7 @@ module Grape
       def self.included(base)
         base.extend ClassMethods
         ancestor_entity_class = base.ancestors.detect { |a| a.entity_class if a.respond_to?(:entity_class) }
-        base.const_set(:Entity, Class.new(ancestor_entity_class || Grape::Entity)) unless const_defined?(:Entity)
+        base.const_set(:Entity, Class.new(ancestor_entity_class || GrapeV0_14_0::Entity)) unless const_defined?(:Entity)
       end
 
       module ClassMethods
@@ -64,13 +64,13 @@ module Grape
 
         # Call this to make exposures to the entity for this Class.
         # Can be called with symbols for the attributes to expose,
-        # a block that yields the full Entity DSL (See Grape::Entity),
+        # a block that yields the full Entity DSL (See GrapeV0_14_0::Entity),
         # or both.
         #
         # @example Symbols only.
         #
         #   class User
-        #     include Grape::Entity::DSL
+        #     include GrapeV0_14_0::Entity::DSL
         #
         #     entity :name, :email
         #   end
@@ -78,7 +78,7 @@ module Grape
         # @example Mixed.
         #
         #   class User
-        #     include Grape::Entity::DSL
+        #     include GrapeV0_14_0::Entity::DSL
         #
         #     entity :name, :email do
         #       expose :latest_status, using: Status::Entity, if: :include_status
@@ -139,8 +139,8 @@ module Grape
     #   runtime options fail to match any of the conditions passed in. If passed a lambda,
     #   it will yield the object being represented and the options passed to the
     #   representation call. Return true to prevent exposure, false to allow it.
-    # @option options :using This option allows you to map an attribute to another Grape
-    #   Entity. Pass it a Grape::Entity class and the attribute in question will
+    # @option options :using This option allows you to map an attribute to another GrapeV0_14_0
+    #   Entity. Pass it a GrapeV0_14_0::Entity class and the attribute in question will
     #   automatically be transformed into a representation that will receive the same
     #   options as the parent entity when called. Note that arrays are fine here and
     #   will automatically be detected and handled appropriately.
@@ -199,7 +199,7 @@ module Grape
     #
     # @example Multi-exposure if
     #
-    #   class MyEntity < Grape::Entity
+    #   class MyEntity < GrapeV0_14_0::Entity
     #     with_options if: { awesome: true } do
     #       expose :awesome, :sweet
     #     end
@@ -231,7 +231,7 @@ module Grape
     #
     #   module API
     #     module Entities
-    #       class User < Grape::Entity
+    #       class User < GrapeV0_14_0::Entity
     #         format_with :timestamp do |date|
     #           date.strftime('%m/%d/%Y')
     #         end
@@ -243,7 +243,7 @@ module Grape
     #
     # @example Formatters are available to all decendants
     #
-    #   Grape::Entity.format_with :timestamp do |date|
+    #   GrapeV0_14_0::Entity.format_with :timestamp do |date|
     #     date.strftime('%m/%d/%Y')
     #   end
     #
@@ -265,7 +265,7 @@ module Grape
     #
     #   module API
     #     module Entities
-    #       class User < Grape::Entity
+    #       class User < GrapeV0_14_0::Entity
     #         root 'users', 'user'
     #         expose :id
     #       end
@@ -275,7 +275,7 @@ module Grape
     # @example Usage in the API Layer
     #
     #   module API
-    #     class Users < Grape::API
+    #     class Users < GrapeV0_14_0::API
     #       version 'v2'
     #
     #       # this will render { "users" : [ { "id" : "1" }, { "id" : "2" } ] }
@@ -309,11 +309,11 @@ module Grape
     #
     #   module API
     #     module Entities
-    #       class User < Grape::Entity
+    #       class User < GrapeV0_14_0::Entity
     #         expose :id
     #       end
     #
-    #       class Users < Grape::Entity
+    #       class Users < GrapeV0_14_0::Entity
     #         present_collection true
     #         expose :items, as: 'users', using: API::Entities::Users
     #         expose :version, documentation: { type: 'string',
@@ -330,7 +330,7 @@ module Grape
     # @example Usage in the API Layer
     #
     #   module API
-    #     class Users < Grape::API
+    #     class Users < GrapeV0_14_0::API
     #       version 'v2'
     #
     #       # this will render { "users" : [ { "id" : "1" }, { "id" : "2" } ], "version" : "v2" }

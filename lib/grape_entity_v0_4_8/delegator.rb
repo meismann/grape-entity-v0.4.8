@@ -1,10 +1,10 @@
-require 'grape_entity/delegator/base'
-require 'grape_entity/delegator/hash_object'
-require 'grape_entity/delegator/openstruct_object'
-require 'grape_entity/delegator/fetchable_object'
-require 'grape_entity/delegator/plain_object'
+require 'grape_entity_v0_4_8/delegator/base'
+require 'grape_entity_v0_4_8/delegator/hash_object'
+require 'grape_entity_v0_4_8/delegator/openstruct_object'
+require 'grape_entity_v0_4_8/delegator/fetchable_object'
+require 'grape_entity_v0_4_8/delegator/plain_object'
 
-module Grape
+module GrapeV0_14_0
   class Entity
     module Delegator
       def self.new(object)

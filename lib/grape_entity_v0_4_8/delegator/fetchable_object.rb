@@ -1,9 +1,9 @@
-module Grape
+module GrapeV0_14_0
   class Entity
     module Delegator
-      class OpenStructObject < Base
+      class FetchableObject < Base
         def delegate(attribute)
-          object.send attribute
+          object.fetch attribute
         end
       end
     end

@@ -1,4 +1,4 @@
-module Grape
+module GrapeV0_14_0
   class Entity
     module Delegator
       class Base

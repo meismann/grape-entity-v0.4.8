@@ -1,9 +1,9 @@
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
-require 'grape_entity/version'
+require 'grape_entity_v0_4_8/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'grape-entity'
-  s.version     = GrapeEntity::VERSION
+  s.name        = 'grape-entity_v0_4_8'
+  s.version     = GrapeEntityV0_4_8::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Michael Bleigh']
   s.email       = ['michael@intridea.com']

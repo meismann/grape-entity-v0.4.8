@@ -44,11 +44,11 @@ module Models
 end
 
 module Entities
-  class School < Grape::Entity
+  class School < GrapeV0_14_0::Entity
     expose :classrooms, using: 'Entities::ClassRoom'
   end
 
-  class ClassRoom < Grape::Entity
+  class ClassRoom < GrapeV0_14_0::Entity
     expose :teacher, using: 'Entities::Teacher'
     expose :students, using: 'Entities::Student'
     expose :size do |model, _opts|
@@ -56,7 +56,7 @@ module Entities
     end
   end
 
-  class Person < Grape::Entity
+  class Person < GrapeV0_14_0::Entity
     expose :name
   end
 

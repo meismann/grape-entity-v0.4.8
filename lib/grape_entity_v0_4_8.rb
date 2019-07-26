@@ -1,0 +1,5 @@
+require 'active_support'
+require 'active_support/core_ext'
+require 'grape_entity_v0_4_8/version'
+require 'grape_entity_v0_4_8/entity'
+require 'grape_entity_v0_4_8/delegator'
